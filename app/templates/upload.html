@@ -9,7 +9,7 @@
 <form method='POST' action="{{ url_for('upload') }}" enctype="multipart/form-data">
   {{ form.csrf_token }}
   {# Add the file upload field as you learnt for Flask-WTF #}
-  {{ form.upload.label }} <br /><span style="color:red"> * </span> Please enter your photo <br /> {{ form.upload }}<br /> <br />
+  {{ form.upload.label }} <br/> <span style="color:red"> * </span> Please enter your photo <br /> {{ form.upload }}<br /> <br />
     <ul>
     {% for error in form.upload.errors %}
       <li style="color:red;">{{ error }}</li>

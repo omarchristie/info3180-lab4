@@ -29,12 +29,11 @@ def about():
 
 @app.route('/upload', methods=['POST', 'GET'])
 def upload():
-    form= UploadForm()
     if not session.get('logged_in'):
         abort(401)
 
     # Instantiate your form class
-
+    form= UploadForm()
     # Validate file upload on submit
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -54,6 +53,9 @@ def get_uploaded_images():
 
 @app.route('/files')   
 def files():
+    if not session.get('logged_in'):
+        abort(401)
+        
     image_names= get_uploaded_images()
     image=[]
     for x in image_names:
