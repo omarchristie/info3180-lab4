@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% for image_name in image_names %}
+<img src="{{url_for('static', filename='uploads/'+image_name)}}" />
+{% endfor %}
+
+{% endblock %}
