@@ -47,8 +47,13 @@ def upload():
     return render_template('upload.html', form=form)
 
 def get_uploaded_images():
-    image_names= os.listdir('./app/static/uploads/')
-    return image_names
+    image_names= os.listdir(filefolder)
+    image=[]
+    for x in image_names:
+        a,b= x.split(".")
+        if b == "jpg" or b == "png":
+            image.append(x)
+    return image
 
 
 @app.route('/files')   
@@ -57,12 +62,7 @@ def files():
         abort(401)
         
     image_names= get_uploaded_images()
-    image=[]
-    for x in image_names:
-        a,b= x.split(".")
-        if b == "jpg" or b == "png":
-            image.append(x)
-    return render_template('files.html', image_names=image)
+    return render_template('files.html', image_names=image_names)
 
 
 @app.route('/login', methods=['POST', 'GET'])
